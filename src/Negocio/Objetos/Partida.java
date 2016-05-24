@@ -1,4 +1,4 @@
-package Objetos;
+package Negocio.Objetos;
 
 import java.util.List;
 
