@@ -7,6 +7,7 @@
     <class>Business.Objects.HistoricoColeta</class>
     <class>Business.Objects.Motorista</class>
     <class>Business.Objects.Lixeira</class>
+    <class>Business.Objects.CaminhaoLixeira</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tcc?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

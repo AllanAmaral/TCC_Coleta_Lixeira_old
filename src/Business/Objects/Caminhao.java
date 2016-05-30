@@ -22,32 +22,37 @@ public class Caminhao implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID_CAMINHAO")
-    private Integer idCaminhao;
-    
+    private String idCaminhao;
+
     @Column(name = "CAPACIDADE_CAMINHAO_KG")
     private BigDecimal capacidadeCaminhaoKg;
-    
+
     @Column(name = "CAPACIDADE_CAMINHAO_LT")
     private BigDecimal capacidadeCaminhaoLt;
-    
+
     @Column(name = "COLETADO_CAMINHAO_KG")
     private BigDecimal coletadoCaminhaoKg;
-    
+
     @Column(name = "COLETADO_CAMINHAO_LT")
     private BigDecimal coletadoCaminhaoLt;
 
     public Caminhao() {
     }
 
-    public Caminhao(Integer idCaminhao) {
+    public Caminhao(String idCaminhao, BigDecimal capacidadeCaminhaoKg, BigDecimal capacidadeCaminhaoLt, 
+            BigDecimal coletadoCaminhaoKg, BigDecimal coletadoCaminhaoLt) {
         this.idCaminhao = idCaminhao;
+        this.capacidadeCaminhaoKg = capacidadeCaminhaoKg;
+        this.capacidadeCaminhaoLt = capacidadeCaminhaoLt;
+        this.coletadoCaminhaoKg = coletadoCaminhaoKg;
+        this.coletadoCaminhaoLt = coletadoCaminhaoLt;
     }
 
-    public Integer getIdCaminhao() {
+    public String getIdCaminhao() {
         return idCaminhao;
     }
 
-    public void setIdCaminhao(Integer idCaminhao) {
+    public void setIdCaminhao(String idCaminhao) {
         this.idCaminhao = idCaminhao;
     }
 
@@ -87,5 +92,5 @@ public class Caminhao implements Serializable {
     public String toString() {
         return "Objetos.Caminhao[ idCaminhao=" + idCaminhao + " ]";
     }
-    
+
 }

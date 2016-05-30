@@ -23,30 +23,37 @@ public class Lixeira implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_LIXEIRA")
     private Integer idLixeira;
-    
+
     @Column(name = "CAPACIDADE_LIXEIRA_KG")
     private BigDecimal capacidadeLixeiraKg;
-    
+
     @Column(name = "CAPACIDADE_LIXEIRA_LT")
     private BigDecimal capacidadeLixeiraLt;
-    
+
     @Column(name = "COLETADO_LIXEIRA_KG")
     private BigDecimal coletadoLixeiraKg;
-    
+
     @Column(name = "COLETADO_LIXEIRA_LT")
     private BigDecimal coletadoLixeiraLt;
-    
+
     @Column(name = "LATITUDE")
     private BigDecimal latitude;
-    
+
     @Column(name = "LONGITUDE")
     private BigDecimal longitude;
 
     public Lixeira() {
     }
 
-    public Lixeira(Integer idLixeira) {
-        this.idLixeira = idLixeira;
+    public Lixeira(BigDecimal capacidadeLixeiraKg, BigDecimal capacidadeLixeiraLt,
+            BigDecimal coletadoLixeiraKg, BigDecimal coletadoLixeiraLt,
+            BigDecimal latitude, BigDecimal longitude) {
+        this.capacidadeLixeiraKg = capacidadeLixeiraKg;
+        this.capacidadeLixeiraLt = capacidadeLixeiraLt;
+        this.coletadoLixeiraKg = coletadoLixeiraKg;
+        this.coletadoLixeiraLt = coletadoLixeiraLt;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Integer getIdLixeira() {
@@ -109,5 +116,5 @@ public class Lixeira implements Serializable {
     public String toString() {
         return "Objetos.Lixeira[ idLixeira=" + idLixeira + " ]";
     }
-    
+
 }

@@ -1,6 +1,6 @@
 package DAO;
 
-import Business.Objects.Caminhao;
+import Business.Objects.CaminhaoLixeira;
 import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,9 +11,9 @@ import javax.persistence.Persistence;
  *
  * @author Allan.Amaral
  */
-public class CaminhaoRepository implements Serializable {
+public class CaminhaoLixeiraRepository implements Serializable {
 
-    public CaminhaoRepository() {
+    public CaminhaoLixeiraRepository() {
         this.emf = Persistence.createEntityManagerFactory("TCC_Coleta_LixoPU");
     }
     private EntityManagerFactory emf = null;
@@ -22,16 +22,16 @@ public class CaminhaoRepository implements Serializable {
         return emf.createEntityManager();
     }
     
-    public void registrar(Caminhao caminhao) throws Exception {
+    public void registrar(CaminhaoLixeira caminhaoLixeira) throws Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(caminhao);
+            em.persist(caminhaoLixeira);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (buscarCaminhao(caminhao.getIdCaminhao()) != null) {
-                throw new Exception("Caminhão já existe.", ex);
+            if (buscarCaminhaoLixeira(caminhaoLixeira.getIdCaminhaoLixeira()) != null) {
+                throw new Exception("O vínculo entre caminhão e lixeira já existe.", ex);
             }
             throw ex;
         } finally {
@@ -41,19 +41,19 @@ public class CaminhaoRepository implements Serializable {
         }
     }
 
-    public void editar(Caminhao caminhao) throws Exception {
+    public void editar(CaminhaoLixeira caminhaoLixeira) throws Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            caminhao = em.merge(caminhao);
+            caminhaoLixeira = em.merge(caminhaoLixeira);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = caminhao.getIdCaminhao();
-                if (buscarCaminhao(id) == null) {
-                    throw new Exception("O caminhão não existe.");
+                Integer id = caminhaoLixeira.getIdCaminhaoLixeira();
+                if (buscarCaminhaoLixeira(id) == null) {
+                    throw new Exception("O vínculo entre caminhão e lixeira não existe.");
                 }
             }
             throw ex;
@@ -69,14 +69,14 @@ public class CaminhaoRepository implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Caminhao caminhao;
+            CaminhaoLixeira caminhaoLixeira;
             try {
-                caminhao = em.getReference(Caminhao.class, id);
-                caminhao.getIdCaminhao();
+                caminhaoLixeira = em.getReference(CaminhaoLixeira.class, id);
+                caminhaoLixeira.getIdCaminhaoLixeira();
             } catch (EntityNotFoundException enfe) {
-                throw new Exception("O caminhão não existe.", enfe);
+                throw new Exception("O vínculo entre caminhão e lixeira não existe.", enfe);
             }
-            em.remove(caminhao);
+            em.remove(caminhaoLixeira);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -84,30 +84,30 @@ public class CaminhaoRepository implements Serializable {
             }
         }
     }
-    
-    public Caminhao buscarCaminhao(String id) {
+
+    public CaminhaoLixeira buscarCaminhaoLixeira(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Caminhao.class, id);
+            return em.find(CaminhaoLixeira.class, id);
         } finally {
             em.close();
         }
     }
     
     /*
-    public List<Caminhao> findCaminhaoEntities() {
-        return findCaminhaoEntities(true, -1, -1);
-    }
-    
-    public List<Caminhao> findCaminhaoEntities(int maxResults, int firstResult) {
-        return findCaminhaoEntities(false, maxResults, firstResult);
+    public List<CaminhaoMotorista> findCaminhaoMotoristaEntities() {
+        return findCaminhaoMotoristaEntities(true, -1, -1);
     }
 
-    private List<Caminhao> findCaminhaoEntities(boolean all, int maxResults, int firstResult) {
+    public List<CaminhaoMotorista> findCaminhaoMotoristaEntities(int maxResults, int firstResult) {
+        return findCaminhaoMotoristaEntities(false, maxResults, firstResult);
+    }
+
+    private List<CaminhaoMotorista> findCaminhaoMotoristaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Caminhao.class));
+            cq.select(cq.from(CaminhaoMotorista.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -119,11 +119,11 @@ public class CaminhaoRepository implements Serializable {
         }
     }
 
-    public int getCaminhaoCount() {
+    public int getCaminhaoMotoristaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Caminhao> rt = cq.from(Caminhao.class);
+            Root<CaminhaoMotorista> rt = cq.from(CaminhaoMotorista.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

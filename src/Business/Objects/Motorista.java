@@ -18,20 +18,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Motorista implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Basic(optional = false)
     @Column(name = "ID_MOTORISTA")
     private Integer idMotorista;
-    
+
     @Column(name = "NOME_MOTORISTA")
     private String nomeMotorista;
 
     public Motorista() {
     }
 
-    public Motorista(Integer idMotorista) {
+    public Motorista(Integer idMotorista, String nomeMotorista) {
         this.idMotorista = idMotorista;
+        this.nomeMotorista = nomeMotorista;
     }
 
     public Integer getIdMotorista() {
@@ -54,5 +55,5 @@ public class Motorista implements Serializable {
     public String toString() {
         return "Objetos.Motorista[ idMotorista=" + idMotorista + " ]";
     }
-    
+
 }

@@ -26,19 +26,19 @@ public class HistoricoColeta implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_HISTORICO_COLETA")
     private Integer idHistoricoColeta;
-    
+
     @Column(name = "ID_LIXEIRA")
     private Integer idLixeira;
-    
+
     @Column(name = "ID_CAMINHAO_MOTORISTA")
     private Integer idCaminhaoMotorista;
-    
+
     @Column(name = "COLETADO_LIXEIRA_KG")
     private BigDecimal coletadoLixeiraKg;
-    
+
     @Column(name = "COLETADO_LIXEIRA_LT")
     private BigDecimal coletadoLixeiraLt;
-    
+
     @Column(name = "DATA_HORA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataHora;
@@ -46,8 +46,13 @@ public class HistoricoColeta implements Serializable {
     public HistoricoColeta() {
     }
 
-    public HistoricoColeta(Integer idHistoricoColeta) {
-        this.idHistoricoColeta = idHistoricoColeta;
+    public HistoricoColeta(Integer idLixeira, Integer idCaminhaoMotorista,
+            BigDecimal coletadoLixeiraKg, BigDecimal coletadoLixeiraLt, Date dataHora) {
+        this.idLixeira = idLixeira;
+        this.idCaminhaoMotorista = idCaminhaoMotorista;
+        this.coletadoLixeiraKg = coletadoLixeiraKg;
+        this.coletadoLixeiraLt = coletadoLixeiraLt;
+        this.dataHora = dataHora;
     }
 
     public Integer getIdHistoricoColeta() {
@@ -102,5 +107,5 @@ public class HistoricoColeta implements Serializable {
     public String toString() {
         return "Objetos.HistoricoColeta[ idHistoricoColeta=" + idHistoricoColeta + " ]";
     }
-    
+
 }

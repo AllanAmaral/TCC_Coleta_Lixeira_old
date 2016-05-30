@@ -16,41 +16,41 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Allan.Amaral
  */
 @Entity
-@Table(name = "caminhao_motorista")
+@Table(name = "caminhao_lixeira")
 @XmlRootElement
-public class CaminhaoMotorista implements Serializable {
+public class CaminhaoLixeira implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "ID_CAMINHAO_MOTORISTA")
-    private Integer idCaminhaoMotorista;
+    @Column(name = "ID_CAMINHAO_LIXEIRA")
+    private Integer idCaminhaoLixeira;
 
     @Column(name = "ID_CAMINHAO")
     private String idCaminhao;
 
-    @Column(name = "ID_MOTORISTA")
-    private Integer idMotorista;
+    @Column(name = "ID_LIXEIRA")
+    private Integer idLixeira;
 
     @Column(name = "DATA_HORA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataHora;
 
-    public CaminhaoMotorista() {
+    public CaminhaoLixeira() {
     }
 
-    public CaminhaoMotorista(String idCaminhao, Integer idMotorista, Date dataHora) {
+    public CaminhaoLixeira(String idCaminhao, Integer idLixeira, Date dataHora) {
         this.idCaminhao = idCaminhao;
-        this.idMotorista = idMotorista;
+        this.idLixeira = idLixeira;
         this.dataHora = dataHora;
     }
-
-    public Integer getIdCaminhaoMotorista() {
-        return idCaminhaoMotorista;
+    
+    public Integer getIdCaminhaoLixeira() {
+        return idCaminhaoLixeira;
     }
 
-    public void setIdCaminhaoMotorista(Integer idCaminhaoMotorista) {
-        this.idCaminhaoMotorista = idCaminhaoMotorista;
+    public void setIdCaminhaoLixeira(Integer idCaminhaoLixeira) {
+        this.idCaminhaoLixeira = idCaminhaoLixeira;
     }
 
     public String getIdCaminhao() {
@@ -61,12 +61,12 @@ public class CaminhaoMotorista implements Serializable {
         this.idCaminhao = idCaminhao;
     }
 
-    public Integer getIdMotorista() {
-        return idMotorista;
+    public Integer getIdLixeira() {
+        return idLixeira;
     }
 
-    public void setIdMotorista(Integer idMotorista) {
-        this.idMotorista = idMotorista;
+    public void setIdLixeira(Integer idLixeira) {
+        this.idLixeira = idLixeira;
     }
 
     public Date getDataHora() {
@@ -79,7 +79,7 @@ public class CaminhaoMotorista implements Serializable {
 
     @Override
     public String toString() {
-        return "Objetos.CaminhaoMotorista[ idCaminhaoMotorista=" + idCaminhaoMotorista + " ]";
+        return "Objetos.CaminhaoLixeira[ idCaminhaoLixeira=" + idCaminhaoLixeira + " ]";
     }
 
 }
