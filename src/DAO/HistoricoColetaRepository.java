@@ -1,6 +1,6 @@
 package DAO;
 
-import Busines.Objects.HistoricoColeta;
+import Business.Objects.HistoricoColeta;
 import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

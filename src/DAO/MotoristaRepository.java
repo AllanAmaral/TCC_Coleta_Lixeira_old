@@ -1,7 +1,7 @@
 package DAO;
 
-import Busines.Objects.Motorista;
-import Busines.Objects.Motorista_;
+import Business.Objects.Motorista;
+import Business.Objects.Motorista_;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

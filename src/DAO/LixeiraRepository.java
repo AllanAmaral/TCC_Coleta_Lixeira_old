@@ -1,6 +1,6 @@
 package DAO;
 
-import Busines.Objects.Lixeira;
+import Business.Objects.Lixeira;
 import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
