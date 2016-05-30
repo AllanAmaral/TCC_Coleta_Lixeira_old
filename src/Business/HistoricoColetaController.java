@@ -1,6 +1,6 @@
 package Business;
 
-import Busines.Objects.HistoricoColeta;
+import Business.Objects.HistoricoColeta;
 import DAO.HistoricoColetaRepository;
 
 /**

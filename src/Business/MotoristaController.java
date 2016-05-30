@@ -1,6 +1,6 @@
 package Business;
 
-import Busines.Objects.Motorista;
+import Business.Objects.Motorista;
 import DAO.MotoristaRepository;
 import java.util.List;
 

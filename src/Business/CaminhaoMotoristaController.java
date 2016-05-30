@@ -1,6 +1,6 @@
 package Business;
 
-import Busines.Objects.CaminhaoMotorista;
+import Business.Objects.CaminhaoMotorista;
 import DAO.CaminhaoMotoristaRepository;
 
 /**

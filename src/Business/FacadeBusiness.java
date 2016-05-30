@@ -1,11 +1,11 @@
 package Business;
 
-import Busines.Objects.Caminhao;
-import Busines.Objects.CaminhaoLixeira;
-import Busines.Objects.CaminhaoMotorista;
-import Busines.Objects.HistoricoColeta;
-import Busines.Objects.Lixeira;
-import Busines.Objects.Motorista;
+import Business.Objects.Caminhao;
+import Business.Objects.CaminhaoLixeira;
+import Business.Objects.CaminhaoMotorista;
+import Business.Objects.HistoricoColeta;
+import Business.Objects.Lixeira;
+import Business.Objects.Motorista;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;

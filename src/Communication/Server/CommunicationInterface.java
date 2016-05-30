@@ -1,8 +1,8 @@
 package Communication.Server;
 
-import Busines.Objects.Caminhao;
-import Busines.Objects.Lixeira;
-import Busines.Objects.Motorista;
+import Business.Objects.Caminhao;
+import Business.Objects.Lixeira;
+import Business.Objects.Motorista;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

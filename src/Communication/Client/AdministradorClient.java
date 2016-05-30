@@ -1,8 +1,8 @@
 package Communication.Client;
 
 import Business.FacadeBusiness;
-import Busines.Objects.Lixeira;
-import Busines.Objects.Motorista;
+import Business.Objects.Lixeira;
+import Business.Objects.Motorista;
 import java.awt.HeadlessException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;

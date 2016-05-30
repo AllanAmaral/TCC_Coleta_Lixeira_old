@@ -1,6 +1,6 @@
 package Business;
 
-import Busines.Objects.CaminhaoLixeira;
+import Business.Objects.CaminhaoLixeira;
 import DAO.CaminhaoLixeiraRepository;
 
 /**

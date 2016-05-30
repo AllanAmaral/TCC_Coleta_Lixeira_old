@@ -1,6 +1,6 @@
 package Business;
 
-import Busines.Objects.Caminhao;
+import Business.Objects.Caminhao;
 import DAO.CaminhaoRepository;
 import java.math.BigDecimal;
 
