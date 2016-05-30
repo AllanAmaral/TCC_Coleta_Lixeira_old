@@ -7,6 +7,9 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,11 +30,13 @@ public class HistoricoColeta implements Serializable {
     @Column(name = "ID_HISTORICO_COLETA")
     private Integer idHistoricoColeta;
 
-    @Column(name = "ID_LIXEIRA")
-    private Integer idLixeira;
+    @ManyToOne
+    @JoinColumn(name="ID_LIXEIRA")
+    private Lixeira lixeira;
 
-    @Column(name = "ID_CAMINHAO_MOTORISTA")
-    private Integer idCaminhaoMotorista;
+    @ManyToOne
+    @JoinColumn(name = "ID_CAMINHAO_MOTORISTA")
+    private CaminhaoMotorista caminhaoMotorista;
 
     @Column(name = "COLETADO_LIXEIRA_KG")
     private BigDecimal coletadoLixeiraKg;
@@ -46,10 +51,10 @@ public class HistoricoColeta implements Serializable {
     public HistoricoColeta() {
     }
 
-    public HistoricoColeta(Integer idLixeira, Integer idCaminhaoMotorista,
+    public HistoricoColeta(Lixeira lixeira, CaminhaoMotorista caminhaoMotorista,
             BigDecimal coletadoLixeiraKg, BigDecimal coletadoLixeiraLt, Date dataHora) {
-        this.idLixeira = idLixeira;
-        this.idCaminhaoMotorista = idCaminhaoMotorista;
+        this.lixeira = lixeira;
+        this.caminhaoMotorista = caminhaoMotorista;
         this.coletadoLixeiraKg = coletadoLixeiraKg;
         this.coletadoLixeiraLt = coletadoLixeiraLt;
         this.dataHora = dataHora;
@@ -63,20 +68,20 @@ public class HistoricoColeta implements Serializable {
         this.idHistoricoColeta = idHistoricoColeta;
     }
 
-    public Integer getIdLixeira() {
-        return idLixeira;
+    public Lixeira getLixeira() {
+        return lixeira;
     }
 
-    public void setIdLixeira(Integer idLixeira) {
-        this.idLixeira = idLixeira;
+    public void setLixeira(Lixeira lixeira) {
+        this.lixeira = lixeira;
     }
 
-    public Integer getIdCaminhaoMotorista() {
-        return idCaminhaoMotorista;
+    public CaminhaoMotorista getCaminhaoMotorista() {
+        return caminhaoMotorista;
     }
 
-    public void setIdCaminhaoMotorista(Integer idCaminhaoMotorista) {
-        this.idCaminhaoMotorista = idCaminhaoMotorista;
+    public void setCaminhaoMotorista(CaminhaoMotorista caminhaoMotorista) {
+        this.caminhaoMotorista = caminhaoMotorista;
     }
 
     public BigDecimal getColetadoLixeiraKg() {

@@ -6,6 +6,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,11 +28,13 @@ public class CaminhaoLixeira implements Serializable {
     @Column(name = "ID_CAMINHAO_LIXEIRA")
     private Integer idCaminhaoLixeira;
 
-    @Column(name = "ID_CAMINHAO")
-    private String idCaminhao;
+    @ManyToOne
+    @JoinColumn(name="ID_CAMINHAO")
+    private Caminhao caminhao;
 
-    @Column(name = "ID_LIXEIRA")
-    private Integer idLixeira;
+    @ManyToOne
+    @JoinColumn(name="ID_LIXEIRA")
+    private Lixeira lixeira;
 
     @Column(name = "DATA_HORA")
     @Temporal(TemporalType.TIMESTAMP)
@@ -39,9 +43,9 @@ public class CaminhaoLixeira implements Serializable {
     public CaminhaoLixeira() {
     }
 
-    public CaminhaoLixeira(String idCaminhao, Integer idLixeira, Date dataHora) {
-        this.idCaminhao = idCaminhao;
-        this.idLixeira = idLixeira;
+    public CaminhaoLixeira(Caminhao caminhao, Lixeira lixeira, Date dataHora) {
+        this.caminhao = caminhao;
+        this.lixeira = lixeira;
         this.dataHora = dataHora;
     }
     
@@ -53,20 +57,20 @@ public class CaminhaoLixeira implements Serializable {
         this.idCaminhaoLixeira = idCaminhaoLixeira;
     }
 
-    public String getIdCaminhao() {
-        return idCaminhao;
+    public Caminhao getCaminhao() {
+        return caminhao;
     }
 
-    public void setIdCaminhao(String idCaminhao) {
-        this.idCaminhao = idCaminhao;
+    public void setCaminhao(Caminhao caminhao) {
+        this.caminhao = caminhao;
     }
 
-    public Integer getIdLixeira() {
-        return idLixeira;
+    public Lixeira getLixeira() {
+        return lixeira;
     }
 
-    public void setIdLixeira(Integer idLixeira) {
-        this.idLixeira = idLixeira;
+    public void setLixeira(Lixeira lixeira) {
+        this.lixeira = lixeira;
     }
 
     public Date getDataHora() {

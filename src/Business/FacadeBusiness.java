@@ -1,6 +1,14 @@
 package Business;
 
+import Business.Objects.Caminhao;
+import Business.Objects.CaminhaoLixeira;
+import Business.Objects.CaminhaoMotorista;
+import Business.Objects.Lixeira;
+import Business.Objects.Motorista;
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+import jdk.nashorn.internal.objects.NativeArray;
 
 /**
  *
@@ -13,6 +21,7 @@ public class FacadeBusiness {
     private final MotoristaController motoristaController;
     private final CaminhaoController caminhaoController;
     private final CaminhaoMotoristaController caminhaoMotoristaController;
+    private final CaminhaoLixeiraController caminhaoLixeiraController;
     private final HistoricoColetaController historicoColetaController;
     private final LixeiraController lixeiraController;
 
@@ -20,6 +29,7 @@ public class FacadeBusiness {
         motoristaController = new MotoristaController();
         caminhaoController = new CaminhaoController();
         caminhaoMotoristaController = new CaminhaoMotoristaController();
+        caminhaoLixeiraController = new CaminhaoLixeiraController();
         historicoColetaController = new HistoricoColetaController();
         lixeiraController = new LixeiraController();
     }
@@ -40,5 +50,20 @@ public class FacadeBusiness {
             BigDecimal latitude, BigDecimal longitude) throws Exception {
         lixeiraController.registrar(capacidadeLixeiraKg, capacidadeLixeiraLt, 
                 coletadoLixeiraKg, coletadoLixeiraLt, latitude, longitude);
+    }
+    
+    public void iniciarDiaDeTrabalho(Integer idMotorista, String placaCaminhao, 
+            List<Lixeira> listaLixeiras) throws Exception {
+        Motorista motorista = motoristaController.buscarMotorista(idMotorista);
+        Caminhao caminhao = caminhaoController.buscarCaminhao(placaCaminhao);
+        
+        CaminhaoMotorista caminhaoMotorista = new CaminhaoMotorista(caminhao, motorista, new Date());
+        caminhaoMotoristaController.registrar(caminhaoMotorista);
+        
+        CaminhaoLixeira caminhaoLixeira;
+        for (Lixeira lixeira : listaLixeiras) {
+            caminhaoLixeira = new CaminhaoLixeira(caminhao, lixeira, new Date());
+            caminhaoLixeiraController.registrar(caminhaoLixeira);
+        }
     }
 }

@@ -6,6 +6,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,11 +28,13 @@ public class CaminhaoMotorista implements Serializable {
     @Column(name = "ID_CAMINHAO_MOTORISTA")
     private Integer idCaminhaoMotorista;
 
-    @Column(name = "ID_CAMINHAO")
-    private String idCaminhao;
+    @ManyToOne
+    @JoinColumn(name="ID_CAMINHAO")
+    private Caminhao caminhao;
 
-    @Column(name = "ID_MOTORISTA")
-    private Integer idMotorista;
+    @ManyToOne
+    @JoinColumn(name="ID_MOTORISTA")
+    private Motorista motorista;
 
     @Column(name = "DATA_HORA")
     @Temporal(TemporalType.TIMESTAMP)
@@ -39,9 +43,9 @@ public class CaminhaoMotorista implements Serializable {
     public CaminhaoMotorista() {
     }
 
-    public CaminhaoMotorista(String idCaminhao, Integer idMotorista, Date dataHora) {
-        this.idCaminhao = idCaminhao;
-        this.idMotorista = idMotorista;
+    public CaminhaoMotorista(Caminhao caminhao, Motorista motorista, Date dataHora) {
+        this.caminhao = caminhao;
+        this.motorista = motorista;
         this.dataHora = dataHora;
     }
 
@@ -53,20 +57,20 @@ public class CaminhaoMotorista implements Serializable {
         this.idCaminhaoMotorista = idCaminhaoMotorista;
     }
 
-    public String getIdCaminhao() {
-        return idCaminhao;
+    public Caminhao getCaminhao() {
+        return caminhao;
     }
 
-    public void setIdCaminhao(String idCaminhao) {
-        this.idCaminhao = idCaminhao;
+    public void setCaminhao(Caminhao caminhao) {
+        this.caminhao = caminhao;
     }
 
-    public Integer getIdMotorista() {
-        return idMotorista;
+    public Motorista getMotorista() {
+        return motorista;
     }
 
-    public void setIdMotorista(Integer idMotorista) {
-        this.idMotorista = idMotorista;
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
     }
 
     public Date getDataHora() {

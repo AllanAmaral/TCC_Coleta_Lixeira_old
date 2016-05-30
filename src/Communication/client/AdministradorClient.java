@@ -1,6 +1,7 @@
 package Communication.client;
 
 import Business.FacadeBusiness;
+import Business.Objects.Lixeira;
 import Business.Objects.Motorista;
 import java.awt.HeadlessException;
 import java.net.MalformedURLException;
@@ -71,5 +72,15 @@ public class AdministradorClient {
         } catch (Exception e){
             System.err.println(e.getMessage());
         }
+    }
+    
+    public void iniciarDiaDeTrabalho(Integer idMotorista, String placaCaminhao, List<Lixeira> listaLixeiras) {
+        try {
+            facade.iniciarDiaDeTrabalho(idMotorista, placaCaminhao, listaLixeiras);
+            System.out.println("Dia de trabalho iniciado com sucesso");
+            
+        } catch (Exception e){
+            System.err.println(e.getMessage());
+        } 
     }
 }
