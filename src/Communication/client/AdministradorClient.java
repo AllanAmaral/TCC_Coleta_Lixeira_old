@@ -1,14 +1,17 @@
-package Communication.Client;
+package Communication.client;
 
 import Business.FacadeBusiness;
+import Business.Objects.Motorista;
 import java.awt.HeadlessException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
-import Communication.Server.CommunicationInterface;
+import Communication.server.CommunicationInterface;
+import DAO.MotoristaRepository;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  *
@@ -25,10 +28,13 @@ public class AdministradorClient {
             CommunicationInterface communicationInterface = (CommunicationInterface) Naming.lookup("//localhost/TCC_Coleta_Lixo_RMI");
             facade = new FacadeBusiness();
             
+            MotoristaRepository mr = new MotoristaRepository();
+            List<Motorista> result = mr.buscarMotorista("allan");
+            
             Thread.sleep(5000);
             
         } catch (NotBoundException | MalformedURLException | RemoteException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO",JOptionPane.ERROR);
+            System.err.println(e.getMessage());
         }
     }
     

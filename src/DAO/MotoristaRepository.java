@@ -1,6 +1,7 @@
 package DAO;
 
 import Business.Objects.Motorista;
+import Business.Objects.Motorista_;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -104,7 +105,7 @@ public class MotoristaRepository implements Serializable {
             CriteriaQuery<Motorista> cq = em.getCriteriaBuilder().createQuery(Motorista.class);
             Root<Motorista> root = cq.from(Motorista.class);
             cq.select(root);
-            cq.where(em.getCriteriaBuilder().like(root.get("nomeMotorista"), nome + "%"));
+            cq.where(em.getCriteriaBuilder().like(root.get(Motorista_.nomeMotorista), nome + "%"));
             Query q = em.createQuery(cq);
             return q.getResultList();
         } finally {

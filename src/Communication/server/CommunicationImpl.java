@@ -1,4 +1,4 @@
-package Communication.Server;
+package Communication.server;
 
 import Business.Objects.Caminhao;
 import Business.Objects.Lixeira;

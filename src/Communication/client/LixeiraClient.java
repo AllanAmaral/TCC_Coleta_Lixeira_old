@@ -1,4 +1,4 @@
-package Communication.Client;
+package Communication.client;
 
 import java.awt.HeadlessException;
 import java.net.MalformedURLException;
@@ -6,7 +6,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
-import Communication.Server.CommunicationInterface;
+import Communication.server.CommunicationInterface;
 
 /**
  *
@@ -24,7 +24,7 @@ public class LixeiraClient {
             Thread.sleep(5000);
             
         } catch (NotBoundException | MalformedURLException | RemoteException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO",JOptionPane.ERROR);
+            System.err.println(e.getMessage());
         }
     }
 }
