@@ -1,9 +1,9 @@
 package DAO;
 
-import Business.Objects.Caminhao;
-import Business.Objects.CaminhaoMotorista;
-import Business.Objects.CaminhaoMotorista_;
-import Business.Objects.Caminhao_;
+import Busines.Objects.Caminhao;
+import Busines.Objects.CaminhaoMotorista;
+import Busines.Objects.CaminhaoMotorista_;
+import Busines.Objects.Caminhao_;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

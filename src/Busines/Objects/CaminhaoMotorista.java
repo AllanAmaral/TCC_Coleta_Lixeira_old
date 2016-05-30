@@ -1,4 +1,4 @@
-package Business.Objects;
+package Busines.Objects;
 
 import java.io.Serializable;
 import java.util.Date;

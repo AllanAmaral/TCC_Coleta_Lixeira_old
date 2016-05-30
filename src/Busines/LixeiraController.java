@@ -1,6 +1,6 @@
-package Business;
+package Busines;
 
-import Business.Objects.Lixeira;
+import Busines.Objects.Lixeira;
 import DAO.LixeiraRepository;
 import java.math.BigDecimal;
 

@@ -1,9 +1,9 @@
 package DAO;
 
-import Business.Objects.CaminhaoLixeira;
-import Business.Objects.CaminhaoLixeira_;
-import Business.Objects.Lixeira;
-import Business.Objects.Lixeira_;
+import Busines.Objects.CaminhaoLixeira;
+import Busines.Objects.CaminhaoLixeira_;
+import Busines.Objects.Lixeira;
+import Busines.Objects.Lixeira_;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

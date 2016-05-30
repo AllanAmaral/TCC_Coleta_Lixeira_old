@@ -1,6 +1,6 @@
 package DAO;
 
-import Business.Objects.Caminhao;
+import Busines.Objects.Caminhao;
 import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
