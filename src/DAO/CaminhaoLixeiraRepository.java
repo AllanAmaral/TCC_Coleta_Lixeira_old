@@ -4,8 +4,6 @@ import Business.Objects.CaminhaoLixeira;
 import Business.Objects.CaminhaoLixeira_;
 import Business.Objects.Lixeira;
 import Business.Objects.Lixeira_;
-import Business.Objects.Motorista;
-import Business.Objects.Motorista_;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

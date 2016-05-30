@@ -3,11 +3,11 @@
   <persistence-unit name="TCC_Coleta_LixoPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Business.Objects.Caminhao</class>
+    <class>Business.Objects.Lixeira</class>
+    <class>Business.Objects.CaminhaoLixeira</class>
     <class>Business.Objects.CaminhaoMotorista</class>
     <class>Business.Objects.HistoricoColeta</class>
     <class>Business.Objects.Motorista</class>
-    <class>Business.Objects.Lixeira</class>
-    <class>Business.Objects.CaminhaoLixeira</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tcc?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
