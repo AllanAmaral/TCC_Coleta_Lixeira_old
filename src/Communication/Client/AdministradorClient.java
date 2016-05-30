@@ -8,10 +8,10 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import Communication.Server.CommunicationInterface;
 import DAO.MotoristaRepository;
 import java.math.BigDecimal;
 import java.util.List;
+import Communication.Server.CommunicationInterface;
 
 /**
  *
