@@ -66,4 +66,8 @@ public class FacadeBusiness {
             caminhaoLixeiraController.registrar(caminhaoLixeira);
         }
     }
+    
+    public List<Lixeira> gerarRota() {
+        return null;
+    }
 }

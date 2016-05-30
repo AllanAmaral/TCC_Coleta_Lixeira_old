@@ -8,7 +8,6 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import javax.swing.JOptionPane;
 import Communication.server.CommunicationInterface;
 import DAO.MotoristaRepository;
 import java.math.BigDecimal;
@@ -82,5 +81,15 @@ public class AdministradorClient {
         } catch (Exception e){
             System.err.println(e.getMessage());
         } 
+    }
+    
+    public List<Lixeira> gerarRota() {
+        try {
+            return facade.gerarRota();
+            
+        } catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+        return null;
     }
 }
