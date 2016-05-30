@@ -1,6 +1,6 @@
 package Communication.Client;
 
-import Busines.FacadeBusiness;
+import Business.FacadeBusiness;
 import java.awt.HeadlessException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;

@@ -1,6 +1,6 @@
 package Communication.Client;
 
-import Busines.FacadeBusiness;
+import Business.FacadeBusiness;
 import Busines.Objects.Lixeira;
 import Busines.Objects.Motorista;
 import java.awt.HeadlessException;
