@@ -1,11 +1,19 @@
 package DAO;
 
+import Business.Objects.Caminhao;
 import Business.Objects.CaminhaoMotorista;
+import Business.Objects.CaminhaoMotorista_;
+import Business.Objects.Caminhao_;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -89,6 +97,23 @@ public class CaminhaoMotoristaRepository implements Serializable {
         EntityManager em = getEntityManager();
         try {
             return em.find(CaminhaoMotorista.class, id);
+        } finally {
+            em.close();
+        }
+    }
+    
+    public CaminhaoMotorista buscarCaminhaoMotoristaIdCaminhao(String idCaminhao) {
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaQuery<CaminhaoMotorista> cq = em.getCriteriaBuilder().createQuery(CaminhaoMotorista.class);
+            Root<CaminhaoMotorista> root = cq.from(CaminhaoMotorista.class);
+            Join<CaminhaoMotorista, Caminhao> caminhao = root.join(CaminhaoMotorista_.caminhao);
+            cq.select(root);
+            cq.distinct(true);
+            cq.where(em.getCriteriaBuilder().like(caminhao.get(Caminhao_.idCaminhao), idCaminhao));
+            Query q = em.createQuery(cq);
+            List<CaminhaoMotorista> result = q.getResultList();
+            return result.isEmpty() ? null : result.get(0);
         } finally {
             em.close();
         }

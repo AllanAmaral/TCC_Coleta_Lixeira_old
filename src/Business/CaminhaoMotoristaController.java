@@ -30,4 +30,8 @@ public class CaminhaoMotoristaController {
     public CaminhaoMotorista buscarCaminhaoMotorista(Integer id) {
         return repository.buscarCaminhaoMotorista(id);
     }
+    
+    public CaminhaoMotorista buscarCaminhaoMotoristaIdCaminhao(String idCaminhao) {
+        return repository.buscarCaminhaoMotoristaIdCaminhao(idCaminhao);
+    }
 }

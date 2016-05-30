@@ -1,11 +1,21 @@
 package DAO;
 
 import Business.Objects.CaminhaoLixeira;
+import Business.Objects.CaminhaoLixeira_;
+import Business.Objects.Lixeira;
+import Business.Objects.Lixeira_;
+import Business.Objects.Motorista;
+import Business.Objects.Motorista_;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -89,6 +99,23 @@ public class CaminhaoLixeiraRepository implements Serializable {
         EntityManager em = getEntityManager();
         try {
             return em.find(CaminhaoLixeira.class, id);
+        } finally {
+            em.close();
+        }
+    }
+    
+    public CaminhaoLixeira buscarCaminhaoLixeiraIdLixeira(Integer idLixeira) {
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaQuery<CaminhaoLixeira> cq = em.getCriteriaBuilder().createQuery(CaminhaoLixeira.class);
+            Root<CaminhaoLixeira> root = cq.from(CaminhaoLixeira.class);
+            Join<CaminhaoLixeira, Lixeira> lixeira = root.join(CaminhaoLixeira_.lixeira);
+            cq.select(root);
+            cq.distinct(true);
+            cq.where(em.getCriteriaBuilder().equal(lixeira.get(Lixeira_.idLixeira), idLixeira));
+            Query q = em.createQuery(cq);
+            List<CaminhaoLixeira> result = q.getResultList();
+            return result.isEmpty() ? null : result.get(0);
         } finally {
             em.close();
         }

@@ -3,6 +3,7 @@ package Business;
 import Business.Objects.Caminhao;
 import Business.Objects.CaminhaoLixeira;
 import Business.Objects.CaminhaoMotorista;
+import Business.Objects.HistoricoColeta;
 import Business.Objects.Lixeira;
 import Business.Objects.Motorista;
 import java.math.BigDecimal;
@@ -69,5 +70,26 @@ public class FacadeBusiness {
     
     public List<Lixeira> gerarRota() {
         return null;
+    }
+    
+    public void enviarStatus(Integer idLixeira, BigDecimal coletadoLixeiraKg, 
+            BigDecimal coletadoLixeiraLt) throws Exception {
+        if (coletadoLixeiraKg == BigDecimal.ZERO
+                && coletadoLixeiraLt == BigDecimal.ZERO)
+            gerarHistoricoColeta(idLixeira);
+        
+        lixeiraController.enviarStatus(coletadoLixeiraKg, coletadoLixeiraLt);
+    }
+    
+    public void gerarHistoricoColeta(Integer idLixeira) throws Exception {
+        Lixeira lixeira = lixeiraController.buscarLixeira(idLixeira);
+        CaminhaoLixeira caminhaoLixeira = caminhaoLixeiraController
+                .buscarCaminhaoLixeiraIdLixeira(idLixeira);
+        CaminhaoMotorista caminhaoMotorista = caminhaoMotoristaController
+                .buscarCaminhaoMotoristaIdCaminhao(caminhaoLixeira.getCaminhao().getIdCaminhao());
+        
+        HistoricoColeta historicoColeta = new HistoricoColeta(lixeira, caminhaoMotorista, 
+                lixeira.getColetadoLixeiraKg(), lixeira.getColetadoLixeiraLt(), new Date());
+        historicoColetaController.registrar(historicoColeta);
     }
 }

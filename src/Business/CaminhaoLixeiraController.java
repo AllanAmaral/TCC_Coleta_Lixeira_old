@@ -30,4 +30,8 @@ public class CaminhaoLixeiraController {
     public CaminhaoLixeira buscarCaminhaoLixeira(Integer id) {
         return repository.buscarCaminhaoLixeira(id);
     }
+    
+    public CaminhaoLixeira buscarCaminhaoLixeiraIdLixeira(Integer idLixeira) {
+        return repository.buscarCaminhaoLixeiraIdLixeira(idLixeira);
+    }
 }

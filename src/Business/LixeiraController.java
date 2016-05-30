@@ -35,4 +35,8 @@ public class LixeiraController {
     public Lixeira buscarLixeira(Integer id) {
         return repository.buscarLixeira(id);
     }
+    
+    public void enviarStatus(BigDecimal coletadoLixeiraKg, BigDecimal coletadoLixeiraLt) {
+        
+    }
 }
