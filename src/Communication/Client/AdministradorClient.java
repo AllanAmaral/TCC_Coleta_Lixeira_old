@@ -1,6 +1,8 @@
 package Communication.Client;
 
 import Business.FacadeBusiness;
+import Business.Objects.Caminhao;
+import Business.Objects.CaminhaoMotorista;
 import Business.Objects.Lixeira;
 import Business.Objects.Motorista;
 import java.awt.HeadlessException;
@@ -9,8 +11,11 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import Communication.Server.CommunicationInterface;
+import DAO.CaminhaoMotoristaRepository;
+import DAO.CaminhaoRepository;
 import DAO.MotoristaRepository;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,9 +33,23 @@ public class AdministradorClient {
             CommunicationInterface communicationInterface = (CommunicationInterface) Naming.lookup("//localhost/TCC_Coleta_Lixo_RMI");
             facade = new FacadeBusiness();
             
-            MotoristaRepository mr = new MotoristaRepository();
-            List<Motorista> result = mr.buscarMotorista("allan");
+            /*CaminhaoRepository cr = new CaminhaoRepository();
+            Caminhao caminhao = new Caminhao("ILZ3456", BigDecimal.ZERO, BigDecimal.ZERO, 
+                    BigDecimal.ZERO, BigDecimal.ZERO);
+            cr.registrar(caminhao);
+            //Caminhao caminhao = cr.buscarCaminhao("ILZ3456");
             
+            MotoristaRepository mr = new MotoristaRepository();
+            Motorista motorista = new Motorista(123, "allan");
+            mr.registrar(motorista);
+            //Motorista motorista = mr.buscarMotorista(123);
+            
+            CaminhaoMotorista cm = new CaminhaoMotorista(caminhao, motorista, new Date());
+            CaminhaoMotoristaRepository cmr = new CaminhaoMotoristaRepository();
+            cmr.registrar(cm);
+            
+            CaminhaoMotorista result = cmr.buscarCaminhaoMotoristaIdCaminhao("ILZ3456");
+            */
             Thread.sleep(5000);
             
         } catch (NotBoundException | MalformedURLException | RemoteException | HeadlessException e) {

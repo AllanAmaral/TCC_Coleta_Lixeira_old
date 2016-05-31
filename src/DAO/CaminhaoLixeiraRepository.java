@@ -4,12 +4,9 @@ import Business.Objects.CaminhaoLixeira;
 import Business.Objects.CaminhaoLixeira_;
 import Business.Objects.Lixeira;
 import Business.Objects.Lixeira_;
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -19,20 +16,13 @@ import javax.persistence.criteria.Root;
  *
  * @author Allan.Amaral
  */
-public class CaminhaoLixeiraRepository implements Serializable {
-
-    public CaminhaoLixeiraRepository() {
-        this.emf = Persistence.createEntityManagerFactory("TCC_Coleta_LixoPU");
-    }
-    private EntityManagerFactory emf = null;
-
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
-    }
+public class CaminhaoLixeiraRepository extends GenericDAO {
     
     public void registrar(CaminhaoLixeira caminhaoLixeira) throws Exception {
         EntityManager em = null;
         try {
+            caminhaoLixeira.setIdCaminhaoLixeira(gerarId());
+            
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(caminhaoLixeira);
@@ -46,6 +36,19 @@ public class CaminhaoLixeiraRepository implements Serializable {
             if (em != null) {
                 em.close();
             }
+        }
+    }
+    
+    private Integer gerarId() {
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaQuery<CaminhaoLixeira> cq = em.getCriteriaBuilder()
+                    .createQuery(CaminhaoLixeira.class);
+            Root<CaminhaoLixeira> root = cq.from(CaminhaoLixeira.class);
+            return gerarId(cq, root, CaminhaoLixeira_.idCaminhaoLixeira, em);
+            
+        } finally {
+            em.close();
         }
     }
 

@@ -2,12 +2,9 @@ package DAO;
 
 import Business.Objects.Motorista;
 import Business.Objects.Motorista_;
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -16,16 +13,7 @@ import javax.persistence.criteria.Root;
  *
  * @author Allan.Amaral
  */
-public class MotoristaRepository implements Serializable {
-
-    public MotoristaRepository() {
-        this.emf = Persistence.createEntityManagerFactory("TCC_Coleta_LixoPU");
-    }
-    private EntityManagerFactory emf = null;
-
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
-    }
+public class MotoristaRepository extends GenericDAO {
 
     public void registrar(Motorista motorista) throws Exception {
         EntityManager em = null;

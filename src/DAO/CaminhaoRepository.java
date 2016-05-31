@@ -1,26 +1,14 @@
 package DAO;
 
 import Business.Objects.Caminhao;
-import java.io.Serializable;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
 
 /**
  *
  * @author Allan.Amaral
  */
-public class CaminhaoRepository implements Serializable {
-
-    public CaminhaoRepository() {
-        this.emf = Persistence.createEntityManagerFactory("TCC_Coleta_LixoPU");
-    }
-    private EntityManagerFactory emf = null;
-
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
-    }
+public class CaminhaoRepository extends GenericDAO {
     
     public void registrar(Caminhao caminhao) throws Exception {
         EntityManager em = null;

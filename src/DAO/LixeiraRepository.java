@@ -1,31 +1,23 @@
 package DAO;
 
 import Business.Objects.Lixeira;
-import java.io.Serializable;
+import Business.Objects.Lixeira_;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
  * @author Allan.Amaral
  */
-public class LixeiraRepository implements Serializable {
-
-    public LixeiraRepository() {
-        this.emf = Persistence.createEntityManagerFactory("TCC_Coleta_LixoPU");
-    }
-    private EntityManagerFactory emf = null;
-
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
-    }
+public class LixeiraRepository extends GenericDAO {
     
     public void registrar(Lixeira lixeira) throws Exception {
         EntityManager em = null;
         try {
+            lixeira.setIdLixeira(gerarId());
+            
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(lixeira);
@@ -39,6 +31,18 @@ public class LixeiraRepository implements Serializable {
             if (em != null) {
                 em.close();
             }
+        }
+    }
+    
+    private Integer gerarId() {
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaQuery<Lixeira> cq = em.getCriteriaBuilder().createQuery(Lixeira.class);
+            Root<Lixeira> root = cq.from(Lixeira.class);
+            return gerarId(cq, root, Lixeira_.idLixeira, em);
+            
+        } finally {
+            em.close();
         }
     }
 

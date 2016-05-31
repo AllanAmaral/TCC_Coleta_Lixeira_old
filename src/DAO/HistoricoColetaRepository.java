@@ -1,31 +1,23 @@
 package DAO;
 
 import Business.Objects.HistoricoColeta;
-import java.io.Serializable;
+import Business.Objects.HistoricoColeta_;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
  * @author Allan.Amaral
  */
-public class HistoricoColetaRepository implements Serializable {
-
-    public HistoricoColetaRepository() {
-        this.emf = Persistence.createEntityManagerFactory("TCC_Coleta_LixoPU");
-    }
-    private EntityManagerFactory emf = null;
-
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
-    }
+public class HistoricoColetaRepository extends GenericDAO {
     
     public void registrar(HistoricoColeta historicoColeta) throws Exception {
         EntityManager em = null;
         try {
+            historicoColeta.setIdHistoricoColeta(gerarId());
+            
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(historicoColeta);
@@ -39,6 +31,19 @@ public class HistoricoColetaRepository implements Serializable {
             if (em != null) {
                 em.close();
             }
+        }
+    }
+    
+    private Integer gerarId() {
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaQuery<HistoricoColeta> cq = em.getCriteriaBuilder()
+                    .createQuery(HistoricoColeta.class);
+            Root<HistoricoColeta> root = cq.from(HistoricoColeta.class);
+            return gerarId(cq, root, HistoricoColeta_.idHistoricoColeta, em);
+            
+        } finally {
+            em.close();
         }
     }
 
